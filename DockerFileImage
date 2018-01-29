@@ -1,0 +1,16 @@
+node {
+    
+  stage 'Checkout'
+
+  git 'https://github.com/PlateauSoftware/USCIS_DEVSECOPS_Prototype.git'
+        
+  stage 'Package Docker image'
+
+  def img = docker.build('USCIS_RFDS/jenkins-docker-ruby-example:latest', '.')
+
+  stage 'Publish'
+  {
+     img.push('latest')
+  }
+
+}
